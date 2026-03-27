@@ -18,8 +18,7 @@
 
 <script>
 function showScore(file){
- document.getElementById("viewer").innerHTML =
- `<iframe src="scores/${file}" width="100%" height="600px"></iframe>`;
+ window.open(`scores/${file}`, '_blank');
 }
 </script>
 
