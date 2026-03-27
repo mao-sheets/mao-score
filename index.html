@@ -7,9 +7,21 @@
 </head>
 <body>
 
+
 <h1>mao弾き語りリスト</h1>
 
-<p>ここから楽譜アプリ作っていくよ😊</p>
+<div onclick="showScore('song_001.pdf')" style="cursor:pointer;">
+曲A
+</div>
+
+<div id="viewer"></div>
+
+<script>
+function showScore(file){
+ document.getElementById("viewer").innerHTML =
+ `<iframe src="scores/${file}" width="100%" height="600px"></iframe>`;
+}
+</script>
 
 </body>
 </html>
