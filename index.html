@@ -223,6 +223,7 @@
  
 .viewer {
   grid-column: 1 / -1;
+  scroll-behavior:smooth;
 }
 
 .viewer > div {
@@ -234,13 +235,14 @@
 
 .viewer img {
   width:100%;
-  height:auto;
-  max-height:80vh;
+  height:100%;
   object-fit:contain;
-  display:block;
-  margin:0 auto;
   flex-shrink:0;
   scroll-snap-align:center;
+}
+
+.back-btn{
+  backdrop-filter: blur(6px);
 }
 
 </style>
@@ -317,22 +319,22 @@
 
   <script>
     const songs = [{"initial": "A", "title": "Aital", "artist": "加藤ミリヤ", "memo": "", images: [
-  "song_001_1.jpg", "song_001_2.jpg", "song_001_3.jpg", "song_001_4.jpg"
+  "scores/song_001_1.jpg", "scores/song_001_2.jpg", "scores/song_001_3.jpg", "scores/song_001_4.jpg"
 ]},
 {"initial": "A", "title": "Alone", "artist": "岡本真夜", "memo": "", images: [
-  "song_001_1.jpg", "song_001_2.jpg", "song_001_3.jpg", "song_001_4.jpg"
+  "scores/song_001_1.jpg", "scores/song_001_2.jpg", "scores/song_001_3.jpg", "scores/song_001_4.jpg"
 ]},
 {"initial": "A", "title": "ALWAYS三丁目の夕日", "artist": "佐藤直紀", "memo": "ピアノ曲", images: [
-  "song_001_1.jpg", "song_001_2.jpg", "song_001_3.jpg", "song_001_4.jpg"
+  "scores/song_001_1.jpg", "scores/song_001_2.jpg", "scores/song_001_3.jpg", "scores/song_001_4.jpg"
 ]},
 {"initial": "A", "title": "ANNIVERSARY", "artist": "岡本真夜", "memo": "", images: [
-  "song_001_1.jpg", "song_001_2.jpg", "song_001_3.jpg", "song_001_4.jpg"
+  "scores/song_001_1.jpg", "scores/song_001_2.jpg", "scores/song_001_3.jpg", "scores/song_001_4.jpg"
 ]},
 {"initial": "A", "title": "Another Orion", "artist": "藤井フミヤ", "memo": "", images: [
-  "song_001_1.jpg", "song_001_2.jpg", "song_001_3.jpg", "song_001_4.jpg"
+  "scores/song_001_1.jpg", "scores/song_001_2.jpg", "scores/song_001_3.jpg", "scores/song_001_4.jpg"
 ]},
 {"initial": "A", "title": "Answer", "artist": "幾田りら", "memo": "", images: [
-  "song_001_1.jpg", "song_001_2.jpg", "song_001_3.jpg", "song_001_4.jpg"
+  "scores/song_001_1.jpg", "scores/song_001_2.jpg", "scores/song_001_3.jpg", "scores/song_001_4.jpg"
 ]},
 {"initial": "B", "title": "Baby, baby", "artist": "岡村孝子", "memo": ""},
 {"initial": "B", "title": "be master of life", "artist": "aiko", "memo": ""},
@@ -1275,9 +1277,10 @@ function render() {
 
     return `
   <div class="song-item"
-    data-index="${index}"
-    data-initial="${escapeAttr(song.initial)}"
-    data-id="${escapeAttr(id)}">
+  data-index="${index}"
+  data-initial="${escapeAttr(song.initial)}"
+  data-id="${escapeAttr(id)}"
+  onclick="openScore(songs[${index}].images)">
 
     <div class="initial">${escapeHtml(song.initial)}</div>
 
@@ -1419,6 +1422,11 @@ function showImages(images){
   </div>
 `;
 }
+
+  function openScore(imgArray){
+    const param = imgArray.join(",");
+    location.href = "score.html?img=" + param;
+  }
 
 </script>
 
